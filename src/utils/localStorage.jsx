@@ -145,9 +145,14 @@ const admin = [
 ];
 
 export const setLocalStorage = () => {
-
+    localStorage.setItem('employees', JSON.stringify(employees));
+    localStorage.setItem('admin', JSON.stringify(admin));
 }
 
 export const getLocalStorage = () => {
+    const employees = JSON.parse(localStorage.getItem('employees'));
+    //JSON.parse gare --> array ko form ma data auxa 
+    const admin = JSON.parse(localStorage.getItem('admin'));
+    console.log(employees, admin);
 
 }
