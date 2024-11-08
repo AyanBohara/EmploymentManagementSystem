@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+//handleLogin is a prop
 const Login = (handleLogin) => {
 
     const [email, setEmail] = useState('') //twoway binding
