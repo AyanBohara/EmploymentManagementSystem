@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
 //handleLogin is a prop
-const Login = (handleLogin) => {
+const Login = ({ handleLogin }) => {
+    // console.log(handleLogin)
 
     const [email, setEmail] = useState('') //twoway binding
     const [password, setPassword] = useState('')
@@ -14,6 +15,7 @@ const Login = (handleLogin) => {
         e.preventDefault()
         console.log("Email is", email);
         console.log("Pass is", password);
+
         handleLogin(email, password)
 
         setEmail('')

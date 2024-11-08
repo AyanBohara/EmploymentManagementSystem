@@ -1,8 +1,10 @@
 const employees = [
     {
         "id": 1,
-        "email": "employee1@example.com",
-        "password": "password123",
+        "firstName": "Alice",
+        "name": "Alice Johnson",
+        "email": "e@e.com",
+        "password": "e",
         "tasks": [
             {
                 "active": true,
@@ -34,10 +36,18 @@ const employees = [
                 "date": "2024-11-08",
                 "category": "Reporting"
             }
-        ]
+        ],
+        "taskCounts": {
+            "active": 2,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 0
+        }
     },
     {
         "id": 2,
+        "firstName": "Bob",
+        "name": "Bob Smith",
         "email": "employee2@example.com",
         "password": "password123",
         "tasks": [
@@ -61,10 +71,18 @@ const employees = [
                 "date": "2024-11-06",
                 "category": "Meetings"
             }
-        ]
+        ],
+        "taskCounts": {
+            "active": 1,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 0
+        }
     },
     {
         "id": 3,
+        "firstName": "Charlie",
+        "name": "Charlie Lee",
         "email": "employee3@example.com",
         "password": "password123",
         "tasks": [
@@ -88,10 +106,18 @@ const employees = [
                 "date": "2024-11-05",
                 "category": "Finance"
             }
-        ]
+        ],
+        "taskCounts": {
+            "active": 1,
+            "newTask": 1,
+            "completed": 0,
+            "failed": 1
+        }
     },
     {
         "id": 4,
+        "firstName": "Daisy",
+        "name": "Daisy White",
         "email": "employee4@example.com",
         "password": "password123",
         "tasks": [
@@ -105,10 +131,18 @@ const employees = [
                 "date": "2024-11-08",
                 "category": "Data Management"
             }
-        ]
+        ],
+        "taskCounts": {
+            "active": 1,
+            "newTask": 0,
+            "completed": 0,
+            "failed": 0
+        }
     },
     {
         "id": 5,
+        "firstName": "Evan",
+        "name": "Evan Black",
         "email": "employee5@example.com",
         "password": "password123",
         "tasks": [
@@ -132,18 +166,27 @@ const employees = [
                 "date": "2024-11-02",
                 "category": "Scheduling"
             }
-        ]
+        ],
+        "taskCounts": {
+            "active": 1,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 0
+        }
     }
 ];
 
 const admin = [
     {
         "id": 1,
+        "firstName": "Admin",
+        "name": "Admin User",
         "email": "admin@example.com",
         "password": "password123"
     }
 ];
 
+// Setting and getting data from local storage
 export const setLocalStorage = () => {
     localStorage.setItem('employees', JSON.stringify(employees));
     localStorage.setItem('admin', JSON.stringify(admin));
@@ -151,8 +194,8 @@ export const setLocalStorage = () => {
 
 export const getLocalStorage = () => {
     const employees = JSON.parse(localStorage.getItem('employees'));
-    //JSON.parse gare --> array ko form ma data auxa 
     const admin = JSON.parse(localStorage.getItem('admin'));
     console.log(employees, admin);
 
+    return { employees, admin }
 }
