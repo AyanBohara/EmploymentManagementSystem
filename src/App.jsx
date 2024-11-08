@@ -32,22 +32,20 @@ const App = () => {
 
   //function to check weather to open admin or employee
   const handleLogin = (email, password) => {
-
     if (email == 'admin@me.com' && password == '123') {
-      setUser({ role: 'admin' })
-      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' })) //local storage ma admin janxa
-    }
-    else if (authData) {
-      const employee = authData.employees.find((e) => e.email === email && e.password === password)
+      setUser('admin')
+      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
+    } else if (userData) {
+      const employee = userData.find((e) => email == e.email && e.password == password)
       if (employee) {
-        setUser({ role: 'employee' })
-        set
-        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee' }))
+        setUser('employee')
+        setLoggedInUserData(employee)
+        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee', data: employee }))
       }
-    } else {
-      alert('Invalid credentials')
     }
-
+    else {
+      alert("Invalid Credentials")
+    }
   }
 
 
@@ -57,8 +55,9 @@ const App = () => {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ''}
+      {user == 'admin' ? <AdminDashboard changeUser={setUser} /> : (user == 'employee' ? <EmployeeDashboard changeUser={setUser} data={loggedInUserData} /> : null)}
 
-      {user === 'admin' ? <AdminDashboard /> : ((user == 'employee' ? <EmployeeDashboard data={loggedInUserData} /> : ''))}
+
 
 
 
