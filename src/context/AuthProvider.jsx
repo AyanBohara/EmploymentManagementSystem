@@ -1,29 +1,28 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage'
 
-//AuthContext is a context object that is used to pass the data to the component tree without having to pass props down manually at every level.
-
-export const AuthContext = createContext();
+export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
+    // localStorage.clear()
 
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState(null)
 
     useEffect(() => {
-        setLocalStorage();
-        const { employees, admin } = getLocalStorage();
-        setUserData({ employees, admin });
-    }, []);
+        setLocalStorage()
+        const { employees } = getLocalStorage()
+        setUserData(employees)
+    }, [])
 
 
 
     return (
         <div>
-            <AuthContext.Provider value={userData}>
+            <AuthContext.Provider value={[userData, setUserData]}>
                 {children}
             </AuthContext.Provider>
         </div>
-    );
-};
+    )
+}
 
-export default AuthProvider;
+export default AuthProvider
